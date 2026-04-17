@@ -251,6 +251,25 @@
         () => trySetPrechatEmail()
     );
 </script>
+<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00DEk00000XV9s1',
+				'Sany_Dealer_Portal_Messaging',
+				'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
+				{
+					scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
 
 </body>
