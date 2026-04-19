@@ -188,73 +188,8 @@
     <!-- Footer -->
     <div class="footer">All Rights Reserved</div>
 
+
     <script>
-        let selectedEmail = "";
-        let selectedName = "";
-
-        function login(type) {
-            if (type === 'dealer1') {
-                selectedEmail = "arif.khan@crosspeaksolutions.com";
-                selectedName = "Dealer Portal 1";
-            } else {
-                selectedEmail = "arifayubkhan15@gmail.com";
-                selectedName = "Dealer Portal 2";
-            }
-
-            // Hide login card
-            document.querySelector('.login-card').style.display = "none";
-
-            // Show profile
-            document.getElementById('profileContainer').style.display = "block";
-
-            // Set profile info
-            document.getElementById('profileName').innerText = selectedName;
-            document.getElementById('profileEmail').innerText = selectedEmail;
-
-            trySetPrechatEmail();
-        }
-
-        function toggleProfile() {
-            const dropdown = document.getElementById('profileDropdown');
-            dropdown.style.display =
-                dropdown.style.display === "block" ? "none" : "block";
-        }
-
-        function logout() {
-            document.querySelector('.login-card').style.display = "flex";
-
-            document.getElementById('profileContainer').style.display = "none";
-            document.getElementById('profileDropdown').style.display = "none";
-
-            selectedEmail = "";
-            selectedName = "";
-        }
-
-        document.addEventListener('click', function (e) {
-            const profile = document.getElementById('profileContainer');
-            if (!profile.contains(e.target)) {
-                document.getElementById('profileDropdown').style.display = "none";
-            }
-        });
-
-        function trySetPrechatEmail() {
-            if (!selectedEmail) return;
-
-            try {
-                embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                    "Email": selectedEmail
-                });
-            } catch (e) {
-                console.warn("Bootstrap not ready yet");
-            }
-        }
-
-        embeddedservice_bootstrap?.addEventHandler?.(
-            "onEmbeddedMessagingReady",
-            () => trySetPrechatEmail()
-        );
-    </script>
-    <script type='text/javascript'>
         function initEmbeddedMessaging() {
             try {
                 embeddedservice_bootstrap.settings.language = 'en_US';
@@ -285,7 +220,7 @@
             }
         }
     </script>
-    <script type='text/javascript'
+    <script
         src='https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js'
         onload='initEmbeddedMessaging()'></script>
 
