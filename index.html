@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SANY Dealer Portal</title>
+
     <style>
         * {
             margin: 0;
@@ -38,65 +38,6 @@
             background-position: center;
         }
 
-        /* LOGIN CARD */
-        .login-card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-
-            background: white;
-            padding: 40px 35px;
-            width: 320px;
-
-            border-radius: 10px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
-        }
-
-        .login-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: black;
-            margin-bottom: 10px;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-
-            background: #d71920;
-            color: white;
-
-            border: none;
-            border-radius: 30px;
-
-            font-size: 15px;
-            font-weight: 600;
-
-            cursor: pointer;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-
-            transition: 0.2s;
-        }
-
-        .login-btn:hover {
-            opacity: 0.85;
-        }
-
-        .btn-icon {
-            width: 18px;
-            height: 18px;
-        }
-
         .footer {
             background: #d71920;
             color: white;
@@ -105,88 +46,41 @@
             font-weight: 500;
             letter-spacing: .5px;
         }
-
-        /* Profile */
-        #profileContainer {
-            display: none;
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            z-index: 20;
-        }
-
-        #profileDropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            margin-top: 10px;
-            background: white;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            padding: 12px;
-            width: 200px;
-        }
-
-        #profileDropdown p {
-            margin-bottom: 5px;
-        }
-
-        #profileDropdown button {
-            background: #d71920;
-            color: white;
-            border: none;
-            padding: 8px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-        }
     </style>
-
 </head>
 
 <body>
-
-
-    <!-- Profile -->
-    <div id="profileContainer">
-        <div onclick="toggleProfile()" style="cursor:pointer;">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                style="width:40px; height:40px; border-radius:50%;">
-        </div>
-
-        <div id="profileDropdown">
-            <p id="profileName" style="font-weight:600;"></p>
-            <p id="profileEmail" style="font-size:14px; color:gray;"></p>
-            <hr style="margin:8px 0;">
-            <button onclick="logout()">Logout</button>
-        </div>
-    </div>
 
     <!-- Header -->
     <div class="header">
         <img src="images.png" class="logo">
     </div>
 
+    <!-- Hero Section -->
+    <div class="hero"></div>
+
     <!-- Footer -->
     <div class="footer">All Rights Reserved</div>
 
-
+    <!-- Embedded Messaging Script -->
     <script>
         function initEmbeddedMessaging() {
             try {
                 embeddedservice_bootstrap.settings.language = 'en_US';
-                // ✅ SAFE EVENT REGISTRATION
+
                 window.addEventListener("onEmbeddedMessagingReady", function () {
                     console.log("Embedded Messaging is ready");
 
                     setTimeout(function () {
                         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
                             "customerEmail": "arif.khan@crosspeaksolutions.com"
-
                         });
+
+                        // Optional: force open chat (for testing)
+                        // embeddedservice_bootstrap.utilAPI.launchChat();
+
                     }, 500);
                 });
-
 
                 embeddedservice_bootstrap.init(
                     '00DEk00000XV9s1',
@@ -202,10 +96,11 @@
             }
         }
     </script>
-    <script
-        src='https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js'
-        onload='initEmbeddedMessaging()'></script>
 
+    <script
+        src="https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js"
+        onload="initEmbeddedMessaging()">
+    </script>
 
 </body>
 
