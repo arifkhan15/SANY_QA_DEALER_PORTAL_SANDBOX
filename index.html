@@ -201,17 +201,11 @@
             selectedName = "Dealer Portal 2";
         }
 
-        // Hide login card
         document.querySelector('.login-card').style.display = "none";
-
-        // Show profile
         document.getElementById('profileContainer').style.display = "block";
 
-        // Set profile info
         document.getElementById('profileName').innerText = selectedName;
         document.getElementById('profileEmail').innerText = selectedEmail;
-
-        trySetPrechatEmail();
     }
 
     function toggleProfile() {
@@ -230,29 +224,40 @@
         selectedName = "";
     }
 
-    document.addEventListener('click', function(e) {
-        const profile = document.getElementById('profileContainer');
-        if (!profile.contains(e.target)) {
-            document.getElementById('profileDropdown').style.display = "none";
-        }
-    });
-
-    function trySetPrechatEmail() {
-        if (!selectedEmail) return;
-
+    function initEmbeddedMessaging() {
         try {
-            embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                "Email": selectedEmail
+            embeddedservice_bootstrap.settings.language = 'en_US';
+
+            window.addEventListener("onEmbeddedMessagingReady", function () {
+                console.log("Embedded Messaging is ready");
+
+                setTimeout(function () {
+                    if (selectedEmail) {
+                        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                            "UserEmail": "arif.khan@crosspeaksolutions.com"
+                        });
+                    }
+                }, 500);
             });
-        } catch (e) {
-            console.warn("Bootstrap not ready yet");
+
+            embeddedservice_bootstrap.init(
+                '00DEk00000XV9s1',
+                'Sany_Dealer_Portal_Messaging',
+                'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
+                {
+                    scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
+                }
+            );
+
+        } catch (err) {
+            console.error(err);
         }
     }
+</script>
 
-    embeddedservice_bootstrap?.addEventHandler?.(
-        "onEmbeddedMessagingReady",
-        () => trySetPrechatEmail()
-    );
+<script
+    src="https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js"
+    onload="initEmbeddedMessaging()">
 </script>
 
 
