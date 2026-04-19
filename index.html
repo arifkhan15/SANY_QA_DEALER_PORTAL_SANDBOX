@@ -33,9 +33,51 @@
 
         .hero {
             flex: 1;
-            background-image: url('HomePageImage.jpg');
+            background-image: url('index-about-sany.jpg');
             background-size: cover;
             background-position: center;
+        }
+
+        .center-message {
+            position: absolute;
+            top: 18%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 17px 46px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            color: #d71920;
+            z-index: 5;
+        }
+
+        .dealer-login {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 16px;
+            z-index: 5;
+        }
+
+        .dealer-btn {
+            padding: 12px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #d71920;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .dealer-btn:hover {
+            opacity: 0.85;
         }
 
         .footer {
@@ -46,53 +88,100 @@
             font-weight: 500;
             letter-spacing: .5px;
         }
+
+        /* Profile */
+        #profileContainer {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            z-index: 20;
+        }
+
+        #profileDropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            margin-top: 10px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            width: 200px;
+        }
+
+        #profileDropdown p {
+            margin-bottom: 5px;
+        }
+
+        #profileDropdown button {
+            background: #d71920;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Header -->
-    <div class="header">
-        <img src="File_W.png" class="logo">
+    <!-- Profile -->
+    <div id="profileContainer">
+        <div onclick="toggleProfile()" style="cursor:pointer;">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                style="width:40px; height:40px; border-radius:50%;">
+        </div>
+
+        <div id="profileDropdown">
+            <p id="profileName" style="font-weight:600;"></p>
+            <p id="profileEmail" style="font-size:14px; color:gray;"></p>
+            <hr style="margin:8px 0;">
+            <button onclick="logout()">Logout</button>
+        </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Header -->
+    <div class="header">
+        <img src="images.png" class="logo">
+    </div>
+
+    <!-- Hero -->
     <div class="hero"></div>
+
+    <!-- Welcome -->
+    <div class="center-message">
+        Welcome to Sany's Dealer Portal
+    </div>
+
 
     <!-- Footer -->
     <div class="footer">All Rights Reserved</div>
 
+
     <!-- Embedded Messaging Script -->
-    <script>
-        function initEmbeddedMessaging() {
-            try {
-                embeddedservice_bootstrap.settings.language = 'en_US';
+    <script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
-                window.addEventListener("onEmbeddedMessagingReady", function () {
-                    console.log("Embedded Messaging is ready");
+			embeddedservice_bootstrap.init(
+				'00DEk00000XV9s1',
+				'Sany_Dealer_Portal_Messaging',
+				'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
+				{
+					scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
-                    setTimeout(function () {
-                        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                            "customerEmail": "arif.khan@crosspeaksolutions.com"
-                        });
-
-                    }, 500);
-                });
-
-                embeddedservice_bootstrap.init(
-                    '00DEk00000XV9s1',
-                    'Sany_Dealer_Portal_Messaging',
-                    'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
-                    {
-                        scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
-                    }
-                );
-
-            } catch (err) {
-                console.error(err);
-            }
-        }
-    </script>
 
     <script
         src="https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js"
