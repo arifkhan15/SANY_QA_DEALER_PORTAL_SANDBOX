@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -159,44 +159,46 @@
 
     <!-- Footer -->
     <div class="footer">All Rights Reserved</div>
-
     <!-- Scripts -->
-
-
     <script>
-       function initEmbeddedMessaging() {
-        try {
-            embeddedservice_bootstrap.settings.language = 'en_US';
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'en_US';
+                // ✅ SAFE EVENT REGISTRATION
+                window.addEventListener("onEmbeddedMessagingReady", function () {
+                    console.log("Embedded Messaging is ready");
 
-            window.addEventListener("onEmbeddedMessagingReady", function () {
-                console.log("Embedded Messaging is ready");
-
-                setTimeout(function () {
-                    if (selectedEmail) {
+                    setTimeout(function () {
                         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                            "UserEmail": "arif.khan@crosspeaksolutions.com"
+                            "customerEmail": "arif.khan@crosspeaksolutions.com"
+
                         });
+                    }, 500);
+                });
+
+
+                embeddedservice_bootstrap.init(
+                    '00DEk00000XV9s1',
+                    'Sany_Dealer_Portal_Messaging',
+                    'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
+                    {
+                        scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
                     }
-                }, 500);
-            });
+                );
 
-            embeddedservice_bootstrap.init(
-                '00DEk00000XV9s1',
-                'Sany_Dealer_Portal_Messaging',
-                'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
-                {
-                    scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
-                }
-            );
 
-        } catch (err) {
-            console.error(err);
+
+            } catch (err) {
+                console.error(err);
+            }
         }
-    }
     </script>
+
     <script
-    src="https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js"
-    onload="initEmbeddedMessaging()">
-</script>
+        src="https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js"
+        onload="initEmbeddedMessaging()">
+        </script>
+
 </body>
+
 </html>
