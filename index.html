@@ -33,7 +33,7 @@
 
         .hero {
             flex: 1;
-            background-image: url('index-about-sany.jpg');
+            background-image: url('HomePageImage.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -54,28 +54,6 @@
             z-index: 5;
         }
 
-        .dealer-login {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 16px;
-            z-index: 5;
-        }
-
-        .dealer-btn {
-            padding: 12px 28px;
-            font-size: 15px;
-            font-weight: 600;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            background: #d71920;
-            color: white;
-            transition: 0.2s;
-        }
-
         .dealer-btn:hover {
             opacity: 0.85;
         }
@@ -88,64 +66,17 @@
             font-weight: 500;
             letter-spacing: .5px;
         }
+       
 
-        /* Profile */
-        #profileContainer {
-            display: none;
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            z-index: 20;
-        }
-
-        #profileDropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            margin-top: 10px;
-            background: white;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            padding: 12px;
-            width: 200px;
-        }
-
-        #profileDropdown p {
-            margin-bottom: 5px;
-        }
-
-        #profileDropdown button {
-            background: #d71920;
-            color: white;
-            border: none;
-            padding: 8px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-        }
+       
     </style>
 </head>
 
 <body>
 
-    <!-- Profile -->
-    <div id="profileContainer">
-        <div onclick="toggleProfile()" style="cursor:pointer;">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                style="width:40px; height:40px; border-radius:50%;">
-        </div>
-
-        <div id="profileDropdown">
-            <p id="profileName" style="font-weight:600;"></p>
-            <p id="profileEmail" style="font-size:14px; color:gray;"></p>
-            <hr style="margin:8px 0;">
-            <button onclick="logout()">Logout</button>
-        </div>
-    </div>
-
     <!-- Header -->
     <div class="header">
-        <img src="images.png" class="logo">
+        <img src="File_W.png" class="logo">
     </div>
 
     <!-- Hero -->
@@ -168,12 +99,12 @@
                 window.addEventListener("onEmbeddedMessagingReady", function () {
                     console.log("Embedded Messaging is ready");
 
-                    setTimeout(function () {
+                   
                         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
                             "customerEmail": "arif.khan@crosspeaksolutions.com"
 
                         });
-                    }, 500);
+                   
                 });
 
 
