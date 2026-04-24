@@ -11,117 +11,403 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial;
         }
 
-        body {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header {
-            background: white;
-            padding: 15px 40px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
-
-        .logo {
-            height: 50px;
-        }
-
+        /* ---------- LANDING ---------- */
         .hero {
-            flex: 1;
-            background-image: url('HomePageImage.jpg');
-            background-size: cover;
-            background-position: center;
+            height: 100vh;
+            background: url('HomePageImage.jpg') center/cover no-repeat;
         }
 
-        .center-message {
+        .login-box {
             position: absolute;
-            top: 18%;
+            top: 25%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             background: white;
-            padding: 17px 46px;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            font-size: 20px;
-            font-weight: 600;
+            padding: 30px;
+            border-radius: 10px;
             text-align: center;
+        }
+
+        .login-box h2 {
             color: #d71920;
-            z-index: 5;
+            margin-bottom: 20px;
         }
 
-        .dealer-btn:hover {
-            opacity: 0.85;
-        }
-
-        .footer {
+        .login-box button {
+            display: block;
+            margin: 10px auto;
+            width: 220px;
+            padding: 12px;
             background: #d71920;
             color: white;
-            text-align: center;
-            padding: 14px;
-            font-weight: 500;
-            letter-spacing: .5px;
+            border: none;
+            cursor: pointer;
         }
-       
 
-       
+        /* ---------- DASHBOARD ---------- */
+        #dashboardPage {
+            display: none;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: #eee;
+        }
+
+        /* PROFILE */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: #d71920;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* DROPDOWN */
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 250px;
+        }
+
+        .dropdown div {
+            margin: 5px 0;
+        }
+
+        .dropdown button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 8px;
+            background: #d71920;
+            color: white;
+            border: none;
+        }
+
+        /* LAYOUT */
+        .container {
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 220px;
+            background: #f4f4f4;
+            height: calc(100vh - 60px);
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .sidebar div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+        }
+
+        /* ICON */
+        .icon {
+            font-size: 18px;
+            width: 30px;
+            text-align: center;
+        }
+
+        /* TEXT */
+        .text {
+            white-space: nowrap;
+        }
+
+        /* COLLAPSED STATE */
+        .sidebar.collapsed {
+            width: 60px;
+        }
+
+        .sidebar.collapsed .text {
+            display: none;
+        }
+
+        /* TOGGLE BUTTON */
+        .toggle-btn {
+            padding: 10px;
+            cursor: pointer;
+            background: #ddd;
+        }
+
+        /* MAIN */
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* CARDS */
+        .cards {
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            background: orange;
+            color: white;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        /* FULL LOGO */
+        .logo-full {
+            width: 120px;
+        }
+
+        /* ICON */
+        .logo-icon {
+            width: 30px;
+            display: none;
+        }
+
+        /* COLLAPSED */
+        .sidebar.collapsed .logo-full {
+            display: none;
+        }
+
+        .sidebar.collapsed .logo-icon {
+            display: block;
+        }
+
+        .sidebar div:hover {
+            background: #e6e6e6;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Header -->
-    <div class="header">
-        <img src="File_W.png" class="logo">
+    <!-- LANDING -->
+    <div id="landingPage" class="hero">
+        <div class="login-box">
+            <h2>Welcome to Sany Dealer Portal</h2>
+
+            <button onclick="loginUser('Arif Khan')">Login as Arif Khan</button>
+            <button onclick="loginUser('Chris')">Login as Chris</button>
+            <button onclick="loginUser('Vignesh')">Login as Vignesh</button>
+            <button onclick="loginUser('Parker')">Login as Parker</button>
+        </div>
     </div>
 
-    <!-- Hero -->
-    <div class="hero"></div>
+    <!-- DASHBOARD -->
+    <div id="dashboardPage">
 
-    <!-- Welcome -->
-    <div class="center-message">
-        Welcome to Sany's Dealer Portal
+        <!-- TOPBAR -->
+        <div class="topbar">
+
+            <!-- LEFT -->
+            <div style="display:flex; align-items:center; gap:15px;">
+                <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+            </div>
+
+            <!-- RIGHT -->
+            <div style="display:flex; align-items:center; gap:20px;">
+
+                <!-- SANY UNIVERSITY -->
+                <img src="sanyversity.png" style="height:30px; position: relative; left: 174px;">
+
+                <!-- Divider -->
+                <div class="divider"></div>
+
+                <!-- SANY ICON -->
+                <img src="sany_sidelogo.png" style="height:40px; position: relative; right: 1174px;">
+
+                <!-- Divider -->
+                <div class="divider"></div>
+
+                <!-- NOTIFICATION -->
+                <div class="notification">
+                    🔔
+                    <span class="badge">0</span>
+                </div>
+
+                <!-- Divider -->
+                <div class="divider"></div>
+
+                <!-- PROFILE -->
+                <div class="profile" onclick="toggleDropdown()">
+                    <span id="greeting"></span>
+                    <div class="avatar" id="avatar"></div>
+
+                    <div class="dropdown" id="dropdown">
+                        <div id="pName" style="font-weight:600;"></div>
+                        <div id="pEmail" style="font-size:13px; color:gray;"></div>
+                        <div style="margin-top:5px;">A1 IRON CORP</div>
+                        <button onclick="logout()">LOG OUT</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+
+            <!-- SIDEBAR -->
+            <div class="sidebar" id="sidebar">
+                <div><span class="icon">👤</span><span class="text">Customer Service</span></div>
+                <div><span class="icon">🔧</span><span class="text">Parts</span></div>
+                <div><span class="icon">🚜</span><span class="text">Machine</span></div>
+                <div><span class="icon">🛡️</span><span class="text">Warranty</span></div>
+                <div><span class="icon">💳</span><span class="text">Credit History</span></div>
+                <div><span class="icon">📄</span><span class="text">Parts Manual</span></div>
+                <div><span class="icon">📡</span><span class="text">Sany Live</span></div>
+            </div>
+
+            <!-- MAIN -->
+            <div class="main">
+
+                <div class="cards">
+                    <div class="card">Parts Ordered<br>$1232.85</div>
+                    <div class="card">Warranty Claims<br>0</div>
+                    <div class="card">New Machines Sold<br>NA</div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
+    <!-- SCRIPT -->
+    <script>
 
-    <!-- Footer -->
-    <div class="footer">All Rights Reserved</div>
-    <!-- Scripts -->
-   <script>
-    function initEmbeddedMessaging() {
-        try {
-            embeddedservice_bootstrap.settings.language = 'en_US';
+        /* USER DATA */
+        const users = {
+            "Arif Khan": "arif.khan@crosspeaksolutions.com",
+            "Chris": "chris.manners@crosspeaksolutions.com",
+            "Vignesh": "vignesh@crosspeaksolutions.com",
+            "Parker": "parker.lewis@crosspeaksolutions.com"
+        };
 
-            // ✅ Correct event name (important for sandbox)
-            window.addEventListener("onEmbeddedMessagingReady", function () {
-                console.log("Embedded Messaging is ready");
 
-                // Optional delay (kept from your working version)
-                setTimeout(function () {
-                    embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                        "UserEmail": "arif.khan@crosspeaksolutions.com"
-                    });
-                }, 500);
-            });
 
-            embeddedservice_bootstrap.init(
-                '00DEk00000XV9s1', // ✅ Your Sandbox Org Id
-                'Sany_Dealer_Portal_Messaging', // ✅ Your Sandbox Messaging Setting
-                'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
-                {
-                    scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
-                }
-            );
+        let selectedUserEmail = ""; // ✅ GLOBAL VARIABLE
 
-        } catch (err) {
-            console.error('Error loading Embedded Messaging: ', err);
+        function loginUser(name) {
+            selectedUserEmail = users[name];
+
+            document.getElementById("landingPage").style.display = "none";
+            document.getElementById("dashboardPage").style.display = "block";
+
+            // ✅ Greeting
+            document.getElementById("greeting").innerText = "Good Day, " + name;
+
+            // ✅ Avatar initials
+            const initials = name.split(" ").map(n => n[0]).join("");
+            document.getElementById("avatar").innerText = initials;
+
+            // ✅ Profile dropdown values
+            document.getElementById("pName").innerText = name;
+            document.getElementById("pEmail").innerText = selectedUserEmail;
+
+            localStorage.setItem("userName", name);
+            localStorage.setItem("userEmail", selectedUserEmail);
+
+            showDashboard(name, selectedUserEmail);
         }
-    }
-</script>
+        function showDashboard(name, email) {
+            document.getElementById("landingPage").style.display = "none";
+            document.getElementById("dashboardPage").style.display = "block";
+
+            document.getElementById("greeting").innerText = "Good Day, " + name;
+
+            const initials = name.split(" ").map(n => n[0]).join("");
+            document.getElementById("avatar").innerText = initials;
+
+            document.getElementById("pName").innerText = name;
+            document.getElementById("pEmail").innerText = email;
+        }
+
+        /* SIDEBAR TOGGLE */
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("collapsed");
+        }
+
+        /* PROFILE DROPDOWN */
+        function toggleDropdown() {
+            const d = document.getElementById("dropdown");
+            d.style.display = d.style.display === "block" ? "none" : "block";
+        }
+
+        /* LOGOUT */
+        function logout() {
+            localStorage.clear();
+            document.getElementById("dashboardPage").style.display = "none";
+            document.getElementById("landingPage").style.display = "block";
+        }
+        window.onload = function () {
+            const name = localStorage.getItem("userName");
+            const email = localStorage.getItem("userEmail");
+
+            if (name && email) {
+                selectedUserEmail = email;
+                showDashboard(name, email);
+            }
+        };
+    </script>
+
+    <script>
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'en_US';
+
+                // ✅ Correct event name (important for sandbox)
+                window.addEventListener("onEmbeddedMessagingReady", function () {
+                    console.log("Embedded Messaging is ready");
+
+                    // Optional delay (kept from your working version)
+                    setTimeout(function () {
+                        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                            "UserEmail": selectedUserEmail
+                        });
+                    }, 500);
+                });
+
+                embeddedservice_bootstrap.init(
+                    '00DEk00000XV9s1', // ✅ Your Sandbox Org Id
+                    'Sany_Dealer_Portal_Messaging', // ✅ Your Sandbox Messaging Setting
+                    'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
+                    {
+                        scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
+                    }
+                );
+
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        }
+    </script>
     <script
         src="https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js"
         onload="initEmbeddedMessaging()">
