@@ -336,6 +336,14 @@
 
             showDashboard(name, selectedUserEmail);
 
+            if (window.embeddedservice_bootstrap) {
+                try {
+                    embeddedservice_bootstrap.userVerificationAPI.clearSession();
+                } catch (e) {
+                    console.log("No previous session to clear");
+                }
+            }
+
             initEmbeddedMessaging();
 
         }
@@ -368,6 +376,11 @@
             localStorage.clear();
             document.getElementById("dashboardPage").style.display = "none";
             document.getElementById("landingPage").style.display = "block";
+            if (window.embeddedservice_bootstrap) {
+                try {
+                    embeddedservice_bootstrap.userVerificationAPI.clearSession();
+                } catch (e) { }
+            }
         }
         window.onload = function () {
             const name = localStorage.getItem("userName");
@@ -384,15 +397,18 @@
     </script>
 
     <script>
+        let messagingInitialized = false;
+
         function initEmbeddedMessaging() {
+            if (messagingInitialized) return;
+            messagingInitialized = true;
+
             try {
                 embeddedservice_bootstrap.settings.language = 'en_US';
 
-                // ✅ Correct event name (important for sandbox)
                 window.addEventListener("onEmbeddedMessagingReady", function () {
                     console.log("Embedded Messaging is ready");
 
-                    // Optional delay (kept from your working version)
                     setTimeout(function () {
                         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
                             "UserEmail": selectedUserEmail
@@ -400,9 +416,11 @@
                     }, 500);
                 });
 
+                console.log('Current email ->>>>>>'+selectedUserEmail);
+
                 embeddedservice_bootstrap.init(
-                    '00DEk00000XV9s1', // ✅ Your Sandbox Org Id
-                    'Sany_Dealer_Portal_Messaging', // ✅ Your Sandbox Messaging Setting
+                    '00DEk00000XV9s1',
+                    'Sany_Dealer_Portal_Messaging',
                     'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
                     {
                         scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
