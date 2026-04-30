@@ -339,11 +339,74 @@
     <script>
 
         /* USER DATA */
-        const users = {
-            "Arif Khan": "arif.khan@crosspeaksolutions.com",
-            "Chris": "chris.manners@crosspeaksolutions.com",
-            "Vignesh": "vignesh@crosspeaksolutions.com",
-            "Parker": "parker.lewis@crosspeaksolutions.com"
+        const userDetails = {
+            "Arif Khan": {
+                email: "arif.khan@crosspeaksolutions.com",
+
+                hasAccessToCustomerService: true,
+                hasAccessToParts: true,
+                hasAccessToMachine: true,
+                hasAccessToWarranty: false,
+                hasAccessToSanyLive: true,
+                hasAccessToBuildPrice: false,
+                hasAccessToDocuments: true,
+
+                location_SAP_AccId: "100500",
+                dealer_SAP_AccId: "200300",
+                dealerAdminEmail: "admin@sanydealer.com",
+                dealerAdminName: "Arif Khan"
+            },
+
+            "Chris": {
+                email: "chris.manners@crosspeaksolutions.com",
+
+                hasAccessToCustomerService: true,
+                hasAccessToParts: false,
+                hasAccessToMachine: true,
+                hasAccessToWarranty: true,
+                hasAccessToSanyLive: false,
+                hasAccessToBuildPrice: true,
+                hasAccessToDocuments: false,
+
+                location_SAP_AccId: "100500",
+                dealer_SAP_AccId: "300400",
+                dealerAdminEmail: "admin_chris@sanydealer.com",
+                dealerAdminName: "Chris"
+            },
+
+            "Vignesh": {
+                email: "vignesh@crosspeaksolutions.com",
+
+                hasAccessToCustomerService: true,
+                hasAccessToParts: true,
+                hasAccessToMachine: false,
+                hasAccessToWarranty: true,
+                hasAccessToSanyLive: true,
+                hasAccessToBuildPrice: false,
+                hasAccessToDocuments: true,
+
+                location_SAP_AccId: "100500",
+                dealer_SAP_AccId: "400500",
+                dealerAdminEmail: "admin_vignesh@sanydealer.com",
+                dealerAdminName: "Vignesh"
+            },
+
+            "Parker": {
+                email: "parker.lewis@crosspeaksolutions.com",
+
+                hasAccessToCustomerService: false,
+                hasAccessToParts: true,
+                hasAccessToMachine: true,
+                hasAccessToWarranty: false,
+                hasAccessToSanyLive: false,
+                hasAccessToBuildPrice: true,
+                hasAccessToDocuments: true,
+
+                location_SAP_AccId: "100500",
+                dealer_SAP_AccId: "500600",
+                dealerAdminEmail: "admin_parker@sanydealer.com",
+                dealerAdminName: "Parker"
+            }
         };
 
 
@@ -449,12 +512,29 @@
 
                     setTimeout(function () {
                         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                            "UserEmail": selectedUserEmail
+
+                            "UserEmail": user.email,
+
+                            "hasAccessToCustomerService": user.hasAccessToCustomerService,
+                            "hasAccessToParts": user.hasAccessToParts,
+                            "hasAccessToMachine": user.hasAccessToMachine,
+                            "hasAccessToWarranty": user.hasAccessToWarranty,
+                            "hasAccessToSanyLive": user.hasAccessToSanyLive,
+                            "hasAccessToBuildPrice": user.hasAccessToBuildPrice,
+                            "hasAccessToDocuments": user.hasAccessToDocuments,
+
+                            "location_SAP_AccId": user.location_SAP_AccId,
+                            "dealer_SAP_AccId": user.dealer_SAP_AccId,
+                            "dealerAdminEmail": user.dealerAdminEmail,
+                            "dealerAdminName": user.dealerAdminName
                         });
                     }, 500);
                 });
 
                 console.log('Current email ->>>>>>' + selectedUserEmail);
+                console.log("User:", user);
+                console.log("Messaging Ready");
+                console.log("Prechat Payload:", prechatData);
 
                 embeddedservice_bootstrap.init(
                     '00DEk00000XV9s1',
