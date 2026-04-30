@@ -478,12 +478,14 @@
             const email = localStorage.getItem("userEmail");
 
             if (name && email) {
-                selectedUserEmail = email;
-                showDashboard(name, email);
+                const user = users[name];   // ✅ FIX: get user object
+
+                if (user) {
+                    selectedUserEmail = email;
+                    showDashboard(name, email);
+                    initEmbeddedMessaging(user); // ✅ now valid
+                }
             }
-
-            initEmbeddedMessaging(user);
-
         };
     </script>
 
@@ -524,10 +526,7 @@
                 });
 
                 console.log('Current email ->>>>>>' + selectedUserEmail);
-                console.log("User:", user);
-                console.log("Messaging Ready");
-                console.log("Prechat Payload:", prechatData);
-
+             
                 embeddedservice_bootstrap.init(
                     '00DEk00000XV9s1',
                     'Sany_Dealer_Portal_Messaging',
