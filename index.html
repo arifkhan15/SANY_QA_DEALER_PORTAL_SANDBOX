@@ -414,39 +414,29 @@
         let selectedUserEmail = ""; // ✅ GLOBAL VARIABLE
 
         function loginUser(name) {
-            selectedUserEmail = users[name];
+            const user = users[name];   // ✅ get full object
+
+            console.log("Selected User:", user);
+
+            selectedUserEmail = user.email; // ✅ correct
 
             document.getElementById("landingPage").style.display = "none";
             document.getElementById("dashboardPage").style.display = "block";
-            document.querySelector(".footer").style.display = "none";
 
-
-            // ✅ Greeting
             document.getElementById("greeting").innerText = "Good Day, " + name;
 
-            // ✅ Avatar initials
             const initials = name.split(" ").map(n => n[0]).join("");
             document.getElementById("avatar").innerText = initials;
 
-            // ✅ Profile dropdown values
             document.getElementById("pName").innerText = name;
-            document.getElementById("pEmail").innerText = selectedUserEmail;
+            document.getElementById("pEmail").innerText = user.email;
 
             localStorage.setItem("userName", name);
-            localStorage.setItem("userEmail", selectedUserEmail);
+            localStorage.setItem("userEmail", user.email);
 
-            showDashboard(name, selectedUserEmail);
+            showDashboard(name, user.email);
 
-            if (window.embeddedservice_bootstrap) {
-                try {
-                    embeddedservice_bootstrap.userVerificationAPI.clearSession();
-                } catch (e) {
-                    console.log("No previous session to clear");
-                }
-            }
-
-            initEmbeddedMessaging();
-
+            initEmbeddedMessaging(user); // ✅ PASS USER
         }
         function showDashboard(name, email) {
             document.getElementById("landingPage").style.display = "none";
@@ -492,7 +482,7 @@
                 showDashboard(name, email);
             }
 
-            initEmbeddedMessaging();
+            initEmbeddedMessaging(user);
 
         };
     </script>
@@ -500,7 +490,7 @@
     <script>
         let messagingInitialized = false;
 
-        function initEmbeddedMessaging() {
+        function initEmbeddedMessaging(user) {
             if (messagingInitialized) return;
             messagingInitialized = true;
 
@@ -509,6 +499,8 @@
 
                 window.addEventListener("onEmbeddedMessagingReady", function () {
                     console.log("Embedded Messaging is ready");
+                    console.log("Messaging READY with:", user);
+
 
                     setTimeout(function () {
                         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
