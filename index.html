@@ -509,14 +509,13 @@
 
                             "UserEmail": user.email,
 
-                            "hasAccessToCustomerService": user.hasAccessToCustomerService,
-                            "hasAccessToParts": user.hasAccessToParts,
-                            "hasAccessToMachine": user.hasAccessToMachine,
-                            "hasAccessToWarranty": user.hasAccessToWarranty,
-                            "hasAccessToSanyLive": user.hasAccessToSanyLive,
-                            "hasAccessToBuildPrice": user.hasAccessToBuildPrice,
-                            "hasAccessToDocuments": user.hasAccessToDocuments,
-
+                            hasAccessToCustomerService: String(user.hasAccessToCustomerService),
+                            hasAccessToParts: String(user.hasAccessToParts),
+                            hasAccessToMachine: String(user.hasAccessToMachine),
+                            hasAccessToWarranty: String(user.hasAccessToWarranty),
+                            hasAccessToSanyLive: String(user.hasAccessToSanyLive),
+                            hasAccessToBuildPrice: String(user.hasAccessToBuildPrice),
+                            hasAccessToDocuments: String(user.hasAccessToDocuments),
                             "location_SAP_AccId": user.location_SAP_AccId,
                             "dealer_SAP_AccId": user.dealer_SAP_AccId,
                             "dealerAdminEmail": user.dealerAdminEmail,
@@ -526,7 +525,7 @@
                 });
 
                 console.log('Current email ->>>>>>' + selectedUserEmail);
-             
+
                 embeddedservice_bootstrap.init(
                     '00DEk00000XV9s1',
                     'Sany_Dealer_Portal_Messaging',
