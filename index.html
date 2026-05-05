@@ -525,6 +525,11 @@
                 });
 
                 console.log('Current email ->>>>>>' + selectedUserEmail);
+                console.log("👉 Prechat payload being sent:", prechatData);
+
+                embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(prechatData);
+
+                console.log("✅ AFTER setHiddenPrechatFields");
 
                 embeddedservice_bootstrap.init(
                     '00DEk00000XV9s1',
