@@ -503,10 +503,9 @@
                     console.log("Embedded Messaging is ready");
                     console.log("Messaging READY with:", user);
 
-
                     setTimeout(function () {
-                        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
 
+                        const prechatData = {
                             "UserEmail": user.email,
 
                             hasAccessToCustomerService: String(user.hasAccessToCustomerService),
@@ -516,11 +515,19 @@
                             hasAccessToSanyLive: String(user.hasAccessToSanyLive),
                             hasAccessToBuildPrice: String(user.hasAccessToBuildPrice),
                             hasAccessToDocuments: String(user.hasAccessToDocuments),
+
                             "location_SAP_AccId": user.location_SAP_AccId,
                             "dealer_SAP_AccId": user.dealer_SAP_AccId,
                             "dealerAdminEmail": user.dealerAdminEmail,
                             "dealerAdminName": user.dealerAdminName
-                        });
+                        };
+
+                        console.log("👉 Prechat payload being sent:", prechatData);
+
+                        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(prechatData);
+
+                        console.log("✅ AFTER setHiddenPrechatFields");
+
                     }, 500);
                 });
 
