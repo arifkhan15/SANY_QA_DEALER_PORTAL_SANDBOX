@@ -492,59 +492,53 @@
     <script>
         let messagingInitialized = false;
 
-        function initEmbeddedMessaging(user) {
-            if (messagingInitialized) return;
-            messagingInitialized = true;
+       function initEmbeddedMessaging(user) {
+    if (messagingInitialized) return;
+    messagingInitialized = true;
 
-            try {
-                embeddedservice_bootstrap.settings.language = 'en_US';
+    try {
+        embeddedservice_bootstrap.settings.language = 'en_US';
 
-                window.addEventListener("onEmbeddedMessagingReady", function () {
-                    console.log("Embedded Messaging is ready");
-                    console.log("Messaging READY with:", user);
-
-                    setTimeout(function () {
-
-                        const prechatData = {
-                            "UserEmail": user.email,
-
-                            hasAccessToCustomerService: String(user.hasAccessToCustomerService),
-                            hasAccessToParts: String(user.hasAccessToParts),
-                            hasAccessToMachine: String(user.hasAccessToMachine),
-                            hasAccessToWarranty: String(user.hasAccessToWarranty),
-                            hasAccessToSanyLive: String(user.hasAccessToSanyLive),
-                            hasAccessToBuildPrice: String(user.hasAccessToBuildPrice),
-                            hasAccessToDocuments: String(user.hasAccessToDocuments),
-
-                            "location_SAP_AccId": user.location_SAP_AccId,
-                            "dealer_SAP_AccId": user.dealer_SAP_AccId,
-                            "dealerAdminEmail": user.dealerAdminEmail,
-                            "dealerAdminName": user.dealerAdminName
-                        };
-
-                        console.log("👉 Prechat payload being sent:", prechatData);
-
-                        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(prechatData);
-
-                        console.log("✅ AFTER setHiddenPrechatFields");
-
-                    }, 500);
-                });
-
-
-                embeddedservice_bootstrap.init(
-                    '00DEk00000XV9s1',
-                    'Sany_Dealer_Portal_Messaging',
-                    'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
-                    {
-                        scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
-                    }
-                );
-
-            } catch (err) {
-                console.error('Error loading Embedded Messaging: ', err);
-            }
+        if (!user || !user.email) {
+            console.error("❌ User not ready");
+            return;
         }
+
+        const prechatData = {
+            UserEmail: user.email,
+            dealerAdminEmail: user.dealerAdminEmail,
+            dealerAdminName: user.dealerAdminName,
+            dealer_SAP_AccId: user.dealer_SAP_AccId,
+            location_SAP_AccId: user.location_SAP_AccId,
+
+            hasAccessToCustomerService: String(user.hasAccessToCustomerService),
+            hasAccessToParts: String(user.hasAccessToParts),
+            hasAccessToMachine: String(user.hasAccessToMachine),
+            hasAccessToWarranty: String(user.hasAccessToWarranty),
+            hasAccessToSanyLive: String(user.hasAccessToSanyLive),
+            hasAccessToBuildPrice: String(user.hasAccessToBuildPrice),
+            hasAccessToDocuments: String(user.hasAccessToDocuments)
+        };
+
+        console.log("✅ FINAL PRECHAT PAYLOAD:", prechatData);
+
+        // ✅ SET FIRST
+        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(prechatData);
+
+        // ✅ THEN INIT
+        embeddedservice_bootstrap.init(
+            '00DEk00000XV9s1',
+            'Sany_Dealer_Portal_Messaging',
+            'https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632',
+            {
+                scrt2URL: 'https://sanyamerica--qa2.sandbox.my.salesforce-scrt.com'
+            }
+        );
+
+    } catch (err) {
+        console.error('Error loading Embedded Messaging: ', err);
+    }
+}
     </script>
     <script
         src="https://sanyamerica--qa2.sandbox.my.site.com/ESWSanyDealerPortalMes1776424018632/assets/js/bootstrap.min.js">
