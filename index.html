@@ -554,9 +554,14 @@
 
         /* LOGOUT */
         function logout() {
+            // ✅ Reset in-memory variables
+            selectedUserEmail = "";
+            messagingInitialized = false;
+
             localStorage.clear();
             document.getElementById("dashboardPage").style.display = "none";
             document.getElementById("landingPage").style.display = "block";
+
             if (window.embeddedservice_bootstrap) {
                 try {
                     embeddedservice_bootstrap.userVerificationAPI.clearSession();
